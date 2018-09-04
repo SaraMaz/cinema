@@ -2,14 +2,17 @@
 
 /**
  * @ngdoc service
- * @name cineAngularApp.serviceAjax
+ * @name coursExoApp.serviceAjax
  * @description
  * # serviceAjax
- * Factory in the cineAngularApp.
+ * Factory in the coursExoApp.
  */
-angular.module('cineAngularApp')
+angular.module('coursExoApp')
   .factory('serviceAjax', function ($http, $q) {
     return{
+        search: function(query, page){
+            return $http.get("http://localhost:3000/search?q=" + query + "&page=" + page);
+        },
         popular: function(page){
             return $http.get("http://localhost:3000/popular?page=" + page);
         }

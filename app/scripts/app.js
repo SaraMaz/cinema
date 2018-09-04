@@ -2,21 +2,25 @@
 
 /**
  * @ngdoc overview
- * @name cineAngularApp
+ * @name coursExoApp
  * @description
- * # cineAngularApp
+ * # coursExoApp
  *
  * Main module of the application.
  */
 angular
-  .module('cineAngularApp', [
+  .module('coursExoApp', [
     'ngRoute', 'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/popular', {
-        templateUrl: 'views/popular.html',
+        templateUrl: 'views/movies.html',
         controller: 'PopularCtrl'
+      })
+      .when('/search/:query', {
+        templateUrl: 'views/movies.html',
+        controller: 'SearchCtrl'
       })
       .otherwise({
         redirectTo: '/popular'

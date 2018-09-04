@@ -2,18 +2,19 @@
 
 /**
  * @ngdoc function
- * @name coursExoApp.controller:PopularCtrl
+ * @name coursExoApp.controller:SearchCtrl
  * @description
- * # PopularCtrl
+ * # SearchCtrl
  * Controller of the coursExoApp
  */
 angular.module('coursExoApp')
-  .controller('PopularCtrl', function ($scope, serviceAjax) {
+    .controller('SearchCtrl', function ($scope, $routeParams, serviceAjax) {
+        $scope.query = $routeParams.query;
         $scope.currentPage = 1;
         $scope.totalPages = 0;
 
         $scope.loadMovies = function(){
-            serviceAjax.popular($scope.currentPage).success(function(data){
+            serviceAjax.search($scope.query, $scope.currentPage).success(function(data){
                 $scope.movies = data.results;
                 $scope.totalPages = data.total_pages;
             });
@@ -22,5 +23,7 @@ angular.module('coursExoApp')
         $scope.pageChanged = function(){
             $scope.loadMovies();
         };
+
         $scope.loadMovies();
-  });
+    });
+
